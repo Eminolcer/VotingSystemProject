@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using VotingSystemProject.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace VotingSystemProject.Services
 {
@@ -22,6 +23,7 @@ namespace VotingSystemProject.Services
 
                 command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 50).Value = user.Password;
 
+            
                 try
                 {
                     connection.Open();
@@ -29,7 +31,15 @@ namespace VotingSystemProject.Services
 
                     if (reader.HasRows)
                     {
+                        while(reader.Read())
+                        {
+                            Session[]
+                        }
                         success = true;
+
+
+
+                        Session["Username"] = reader.GetValue(1).ToString(); 
                     }
                 }catch (Exception f)
                 {
